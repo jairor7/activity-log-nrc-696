@@ -1,10 +1,12 @@
 import { Button, Card, Input } from "antd";
 import React, { useContext, useState } from "react";
-import "./login.css";
 import { useLocation } from "wouter";
 import { LoginContext } from "../../LoginContext";
+import usersApp from "../../assets/users.json";
+import "./login.css";
 
 const Login = () => {
+  const { users } = usersApp;
   const [formData, setFormData] = useState({
     username: { value: "", error: undefined },
     password: { value: "", error: undefined },
@@ -12,24 +14,6 @@ const Login = () => {
   });
   const [, setLocation] = useLocation();
   const { setLoginInfo } = useContext(LoginContext);
-
-  const users = [
-    {
-      username: "joiner",
-      password: "1234",
-      name: "Joiner Porras",
-    },
-    {
-      username: "jairo",
-      password: "123",
-      name: "Jairo Rodriguez",
-    },
-    {
-      username: "luisa",
-      password: "0987",
-      name: "Luisa Becerra",
-    },
-  ];
 
   const onChangeInput = ({ target }) => {
     const { id, value } = target;
@@ -76,6 +60,7 @@ const Login = () => {
         isLoggedIn: isValid,
         userInfo: {
           name: name,
+          username: username.value,
           activities: [],
         },
       });

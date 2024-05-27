@@ -10,4 +10,5 @@
 .main-container main,
 .main-container header {
   padding: 3rem 3rem 0;
+  width: 100%;
 }

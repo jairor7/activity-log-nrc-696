@@ -3,16 +3,10 @@ import "./activityLog.css";
 import Home from "./sections/dashboard/home/Home";
 import Login from "./sections/login/Login";
 import { useState } from "react";
-import { LoginContext } from "./LoginContext";
+import { LoginContext, initialContext } from "./LoginContext";
 
 function ActivityLog() {
-  const [loginInfo, setLoginInfo] = useState({
-    isLoggedIn: false,
-    userInfo: {
-      name: undefined,
-      activities: [],
-    },
-  });
+  const [loginInfo, setLoginInfo] = useState(initialContext);
   const { isLoggedIn } = loginInfo;
   return (
     <LoginContext.Provider value={{ loginInfo, setLoginInfo }}>

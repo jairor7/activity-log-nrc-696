@@ -1,0 +1,19 @@
+{
+  "users": [
+    {
+      "username": "joiner",
+      "password": "1234",
+      "name": "Joiner Porras"
+    },
+    {
+      "username": "jairo",
+      "password": "123",
+      "name": "Jairo Rodriguez"
+    },
+    {
+      "username": "luisa",
+      "password": "0987",
+      "name": "Luisa Becerra"
+    }
+  ]
+}
