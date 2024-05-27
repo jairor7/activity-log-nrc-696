@@ -1,6 +1,8 @@
 import { Button, Card, Input } from "antd";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./login.css";
+import { useLocation } from "wouter";
+import { LoginContext } from "../../LoginContext";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -8,19 +10,24 @@ const Login = () => {
     password: { value: "", error: undefined },
     general: { error: undefined },
   });
+  const [, setLocation] = useLocation();
+  const { setLoginInfo } = useContext(LoginContext);
 
   const users = [
     {
       username: "joiner",
       password: "1234",
+      name: "Joiner Porras",
     },
     {
       username: "jairo",
       password: "123",
+      name: "Jairo Rodriguez",
     },
     {
       username: "luisa",
       password: "0987",
+      name: "Luisa Becerra",
     },
   ];
 
@@ -43,12 +50,15 @@ const Login = () => {
 
   const onSubmitForm = (event) => {
     event.preventDefault();
+    let name = "";
     const { username, password } = formData;
 
-    const isValid = users.some(
-      (user) =>
-        user.username === username.value && user.password === password.value
-    );
+    const isValid = users.some((user) => {
+      const isValid =
+        user.username === username.value && user.password === password.value;
+      isValid && (name = user.name);
+      return isValid;
+    });
 
     setFormData({
       ...formData,
@@ -62,6 +72,14 @@ const Login = () => {
         ...formData,
         general: { error: undefined },
       });
+      setLoginInfo({
+        isLoggedIn: isValid,
+        userInfo: {
+          name: name,
+          activities: [],
+        },
+      });
+      setLocation("/home");
     }
   };
 

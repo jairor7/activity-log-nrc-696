@@ -1,0 +1,13 @@
+.main-container {
+  display: flex;
+  position: absolute;
+  align-items: start;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+.main-container main,
+.main-container header {
+  padding: 3rem 3rem 0;
+}
