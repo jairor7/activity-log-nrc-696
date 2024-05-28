@@ -4,6 +4,7 @@ import { useLocation } from "wouter";
 import { LoginContext } from "../../LoginContext";
 import usersApp from "../../assets/users.json";
 import "./login.css";
+import InputForm from "../../components/inputForm/InputForm";
 
 const Login = () => {
   const { users } = usersApp;
@@ -72,28 +73,23 @@ const Login = () => {
     <div className="form-container">
       <Card className="form-card" title={"Inicio de sesion"}>
         <form onSubmit={onSubmitForm}>
-          <span>Usuario:</span>
-          <Input
-            id="username"
-            onChange={onChangeInput}
-            onBlur={onChangeInput}
+          <InputForm
+            id={"username"}
+            label={"Usuario"}
+            onChangeInput={onChangeInput}
+            onBlurInput={onChangeInput}
             value={formData.username.value}
-            defaultValue={formData.username.value}
+            error={formData.username.error}
           />
-          {formData.username.error && (
-            <span className="span-error">{formData.username.error}</span>
-          )}
-          <span>Contraseña:</span>
-          <Input.Password
-            id="password"
-            onChange={onChangeInput}
-            onBlur={onChangeInput}
+          <InputForm
+            id={"password"}
+            label={"Contraseña"}
+            onChangeInput={onChangeInput}
+            onBlurInput={onChangeInput}
             value={formData.password.value}
-            defaultValue={formData.password.value}
+            error={formData.password.error}
+            isPassword
           />
-          {formData.password.error && (
-            <span className="span-error">{formData.password.error}</span>
-          )}
           {formData.general.error && (
             <span className="span-error">{formData.general.error}</span>
           )}

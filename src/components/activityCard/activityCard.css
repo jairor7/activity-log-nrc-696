@@ -1,3 +1,9 @@
 .activity-col .ant-card {
   height: 100%;
+  background-color: #f0f0f0;
+}
+
+.activity-col .ant-card .ant-card-head {
+  border-color: white;
+  background-color: #cfcfcf;
 }

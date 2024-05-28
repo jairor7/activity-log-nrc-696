@@ -20,3 +20,11 @@ body {
 .span-error {
   color: #e9431a;
 }
+
+.span-success {
+  color: #3fb162;
+}
+
+.date-picker {
+  width: 100%;
+}

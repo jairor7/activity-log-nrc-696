@@ -32,7 +32,7 @@ const Home = () => {
     },
     {
       key: "2",
-      label: "Crear Actividad",
+      label: "Registrar Actividad",
       children: <ActivityCreation />,
     },
   ];

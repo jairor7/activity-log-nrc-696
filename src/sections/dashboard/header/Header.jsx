@@ -19,13 +19,13 @@ const Header = () => {
       <Title style={{ margin: 0 }}>{`Hola ${userInfo.name}!`}</Title>
       <span>Registra y consulta tus actividades o</span>
       <Button
-        style={{ padding: "0 0.5rem" }}
+        style={{ padding: "0 0.5rem", fontSize: "1.6rem" }}
         onClick={onClickLogout}
         icon={<LogoutOutlined />}
         iconPosition={"end"}
         type="link"
       >
-        Cierra Sessión
+        cierra sesión
       </Button>
     </header>
   );

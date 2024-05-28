@@ -12,8 +12,6 @@ const ActivityCard = ({ title, description, activityDate, time }) => {
         size="small"
         title={title}
       >
-        <Text type="secondary">{activityDate}</Text>
-        <br />
         <b>
           <span>Tiempo:&nbsp;</span>
         </b>
@@ -22,6 +20,7 @@ const ActivityCard = ({ title, description, activityDate, time }) => {
           <span>Descripción:&nbsp;</span>
         </b>
         <span>{description}</span> <br />
+        <Text type="secondary">{activityDate}</Text>
       </Card>
     </Col>
   );

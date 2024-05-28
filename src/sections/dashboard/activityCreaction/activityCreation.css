@@ -1,0 +1,11 @@
+.activity-form-container {
+  max-width: 60rem;
+  border: 1px solid #f0f0f0;
+  padding: 3rem;
+  background-color: #dee4ee;
+  border-radius: 0.8rem;
+}
+
+.activity-create-button {
+  margin-top: 2rem;
+}

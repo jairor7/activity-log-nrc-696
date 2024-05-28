@@ -3,31 +3,31 @@
     {
       "activity": "Actividad 1",
       "description": "Descripcion de Joiner 1",
-      "date": "25/05/204",
+      "date": "2024-05-25",
       "time": "2 horas"
     },
     {
       "activity": "Actividad 2",
       "description": "Descripcion de Joiner 2, en donde se raliza una actividad con descripción  larga",
-      "date": "23/05/204",
+      "date": "2024-05-23",
       "time": "4 horas"
     },
     {
       "activity": "Actividad 3",
       "description": "Descripcion de Joiner 3",
-      "date": "22/05/204",
+      "date": "2024-05-22",
       "time": "7 horas"
     },
     {
       "activity": "Actividad 4",
       "description": "Descripcion de Joiner 4",
-      "date": "22/05/204",
+      "date": "2024-05-22",
       "time": "7 horas"
     },
     {
       "activity": "Actividad 5",
       "description": "Descripcion de Joiner 5",
-      "date": "23/05/204",
+      "date": "2024-05-23",
       "time": "7 horas"
     }
   ],
@@ -35,25 +35,25 @@
     {
       "activity": "Actividad 1",
       "description": "Descripcion de Jairo 1",
-      "date": "23/05/204",
+      "date": "2024-05-23",
       "time": "20 min"
     },
     {
       "activity": "Actividad 2",
       "description": "Descripcion de Jairo 2",
-      "date": "5/05/204",
+      "date": "2024-05-05",
       "time": "2 horas"
     },
     {
       "activity": "Actividad 3",
       "description": "Descripcion de Jairo 3, en donde se raliza una actividad con descripción  larga",
-      "date": "23/05/204",
+      "date": "2024-05-23",
       "time": "4 horas"
     },
     {
       "activity": "Actividad 4",
       "description": "Descripcion de Jairo 4",
-      "date": "11/04/204",
+      "date": "2024-04-11",
       "time": "2 horas"
     }
   ],
