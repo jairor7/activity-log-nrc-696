@@ -30,8 +30,8 @@ const ActivityCreation = () => {
       const newActivity = {
         activity: activity.value,
         description: description.value,
-        date: time.value,
-        time: date.value,
+        time: time.value,
+        date: date.value,
       };
 
       setLoginInfo({
