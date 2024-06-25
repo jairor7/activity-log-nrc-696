@@ -2,6 +2,7 @@ import { Button, Input } from "antd";
 import React, { useContext, useState } from "react";
 import { LoginContext } from "../../../LoginContext";
 import InputForm from "../../../components/inputForm/InputForm";
+import { useLocation } from "wouter";
 import "./activityCreation.css";
 
 const ActivityCreation = () => {
@@ -13,8 +14,10 @@ const ActivityCreation = () => {
     general: { error: undefined, success: undefined },
   };
   const [formData, setFormData] = useState(initialStateForm);
+  const [, setLocation] = useLocation();
 
   const { loginInfo, setLoginInfo } = useContext(LoginContext);
+    const { userInfo } = loginInfo;
 
   const onSubmitForm = (event) => {
     event.preventDefault();
@@ -28,26 +31,49 @@ const ActivityCreation = () => {
 
     if (formIsComplete) {
       const newActivity = {
+        userId:  userInfo?.id,
         activity: activity.value,
         description: description.value,
         time: time.value,
         date: date.value,
       };
+      
+      fetch("/new-activity", {
+        "method": "post",
+        "body": JSON.stringify(newActivity),
+        "headers": {
+          "Content-Type": "application/json",
+        },
+      })
+      .then((res) => res.json())
+      .then((response) => {
+        if(response?.isError){
+          setFormData({
+            ...formData,
+            general: {
+              error: response?.response,
+            },
+          });
+        } else{
+          setLoginInfo({
+            ...loginInfo,
+            userInfo: {
+              ...loginInfo.userInfo,
+              activities: [...loginInfo.userInfo.activities, newActivity],
+            },
+          });
+          setFormData({
+            ...initialStateForm,
+            general: {
+              error: undefined,
+              success: "Actividad registrada con exito",
+            },
+          });
+          setLocation("/home");
+        }
+      })
+      .catch((error) => console.error("Error:", error));
 
-      setLoginInfo({
-        ...loginInfo,
-        userInfo: {
-          ...loginInfo.userInfo,
-          activities: [...loginInfo.userInfo.activities, newActivity],
-        },
-      });
-      setFormData({
-        ...initialStateForm,
-        general: {
-          error: undefined,
-          success: "Actividad registrada con exito",
-        },
-      });
     } else {
       setFormData({
         ...formData,

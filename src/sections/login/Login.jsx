@@ -2,12 +2,10 @@ import { Button, Card, Input } from "antd";
 import React, { useContext, useState } from "react";
 import { useLocation } from "wouter";
 import { LoginContext } from "../../LoginContext";
-import usersApp from "../../assets/users.json";
 import "./login.css";
 import InputForm from "../../components/inputForm/InputForm";
 
 const Login = () => {
-  const { users } = usersApp;
   const [formData, setFormData] = useState({
     username: { value: "", error: undefined },
     password: { value: "", error: undefined },
@@ -37,36 +35,46 @@ const Login = () => {
     event.preventDefault();
     let name = "";
     const { username, password } = formData;
-
-    const isValid = users.some((user) => {
-      const isValid =
-        user.username === username.value && user.password === password.value;
-      isValid && (name = user.name);
-      return isValid;
-    });
-
-    setFormData({
-      ...formData,
-      general: {
-        error: isValid ? undefined : "El usuario y/o contraseña es incorrecta",
-      },
-    });
-
-    if (isValid) {
-      setFormData({
-        ...formData,
-        general: { error: undefined },
-      });
-      setLoginInfo({
-        isLoggedIn: isValid,
-        userInfo: {
-          name: name,
-          username: username.value,
-          activities: [],
-        },
-      });
-      setLocation("/home");
+    const body = {
+       username: username.value,
+       password: password.value,
     }
+    
+    fetch("/validate-login", {
+      "method": "post",
+      "body": JSON.stringify(body),
+      "headers": {
+        "Content-Type": "application/json",
+      },
+    })
+    .then((res) => res.json())
+    .then((response) => {
+      if(response?.isError){
+        setFormData({
+          ...formData,
+          general: {
+            error: response?.response,
+          },
+        });
+      } else{
+        setFormData({
+          ...formData,
+          general: { error: undefined },
+        });
+        setLoginInfo({
+          isLoggedIn: true,
+          userInfo: {
+            id: response?.response?.id,
+            name: response?.response?.name,
+            username: username?.response?.value,
+            activities: [],
+          },
+        });
+        setLocation("/home");
+      }
+      
+    })
+    .catch((error) => console.error("Error:", error));
   };
 
   return (

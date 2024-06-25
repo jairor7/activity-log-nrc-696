@@ -16,7 +16,7 @@ const Header = () => {
 
   return (
     <header>
-      <Title style={{ margin: 0 }}>{`Hola ${userInfo.name}!`}</Title>
+      <Title style={{ margin: 0 }}>{`Hola ${userInfo?.name}!`}</Title>
       <span>Registra y consulta tus actividades o</span>
       <Button
         style={{ padding: "0 0.5rem", fontSize: "1.6rem" }}
