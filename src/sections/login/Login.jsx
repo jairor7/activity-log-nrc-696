@@ -36,45 +36,44 @@ const Login = () => {
     let name = "";
     const { username, password } = formData;
     const body = {
-       username: username.value,
-       password: password.value,
-    }
-    
+      username: username.value,
+      password: password.value,
+    };
+
     fetch("/validate-login", {
-      "method": "post",
-      "body": JSON.stringify(body),
-      "headers": {
+      method: "post",
+      body: JSON.stringify(body),
+      headers: {
         "Content-Type": "application/json",
       },
     })
-    .then((res) => res.json())
-    .then((response) => {
-      if(response?.isError){
-        setFormData({
-          ...formData,
-          general: {
-            error: response?.response,
-          },
-        });
-      } else{
-        setFormData({
-          ...formData,
-          general: { error: undefined },
-        });
-        setLoginInfo({
-          isLoggedIn: true,
-          userInfo: {
-            id: response?.response?.id,
-            name: response?.response?.name,
-            username: username?.response?.value,
-            activities: [],
-          },
-        });
-        setLocation("/home");
-      }
-      
-    })
-    .catch((error) => console.error("Error:", error));
+      .then((res) => res.json())
+      .then((response) => {
+        if (response?.isError) {
+          setFormData({
+            ...formData,
+            general: {
+              error: response?.response,
+            },
+          });
+        } else {
+          setFormData({
+            ...formData,
+            general: { error: undefined },
+          });
+          setLoginInfo({
+            isLoggedIn: true,
+            userInfo: {
+              id: response?.response?.id,
+              name: response?.response?.name,
+              username: username?.response?.value,
+              activities: [],
+            },
+          });
+          setLocation("/home");
+        }
+      })
+      .catch((error) => console.error("Error:", error));
   };
 
   return (
