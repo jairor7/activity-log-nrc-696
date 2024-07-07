@@ -2,7 +2,7 @@ import React from "react";
 
 import Header from "../header/Header";
 import Activities from "../activities/Activities";
-import ActivityCreation from "../activityCreaction/ActivityCreation";
+import ActivityCreation from "../activityCreation/ActivityCreation";
 import { Tabs } from "antd";
 
 import activities from "../../../assets/activities.json";

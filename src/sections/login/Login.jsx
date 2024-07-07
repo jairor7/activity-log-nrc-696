@@ -1,4 +1,4 @@
-import { Button, Card, Input } from "antd";
+import { Button, Card } from "antd";
 import React, { useContext, useState } from "react";
 import { useLocation } from "wouter";
 import { LoginContext } from "../../LoginContext";
@@ -33,7 +33,6 @@ const Login = () => {
 
   const onSubmitForm = (event) => {
     event.preventDefault();
-    let name = "";
     const { username, password } = formData;
     const body = {
       username: username.value,
@@ -100,7 +99,7 @@ const Login = () => {
           {formData.general.error && (
             <span className="span-error">{formData.general.error}</span>
           )}
-          <Button type="primary" htmlType="submit" block>
+          <Button id="login-user" type="primary" htmlType="submit" block>
             Iniciar sesión
           </Button>
         </form>

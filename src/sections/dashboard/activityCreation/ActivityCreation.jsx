@@ -1,4 +1,4 @@
-import { Button, Input } from "antd";
+import { Button } from "antd";
 import React, { useContext, useState } from "react";
 import { LoginContext } from "../../../LoginContext";
 import InputForm from "../../../components/inputForm/InputForm";
@@ -17,7 +17,7 @@ const ActivityCreation = () => {
   const [, setLocation] = useLocation();
 
   const { loginInfo, setLoginInfo } = useContext(LoginContext);
-    const { userInfo } = loginInfo;
+  const { userInfo } = loginInfo;
 
   const onSubmitForm = (event) => {
     event.preventDefault();
@@ -31,49 +31,48 @@ const ActivityCreation = () => {
 
     if (formIsComplete) {
       const newActivity = {
-        userId:  userInfo?.id,
+        userId: userInfo?.id,
         activity: activity.value,
         description: description.value,
         time: time.value,
         date: date.value,
       };
-      
+
       fetch("/new-activity", {
-        "method": "post",
-        "body": JSON.stringify(newActivity),
-        "headers": {
+        method: "post",
+        body: JSON.stringify(newActivity),
+        headers: {
           "Content-Type": "application/json",
         },
       })
-      .then((res) => res.json())
-      .then((response) => {
-        if(response?.isError){
-          setFormData({
-            ...formData,
-            general: {
-              error: response?.response,
-            },
-          });
-        } else{
-          setLoginInfo({
-            ...loginInfo,
-            userInfo: {
-              ...loginInfo.userInfo,
-              activities: [...loginInfo.userInfo.activities, newActivity],
-            },
-          });
-          setFormData({
-            ...initialStateForm,
-            general: {
-              error: undefined,
-              success: "Actividad registrada con exito",
-            },
-          });
-          setLocation("/home");
-        }
-      })
-      .catch((error) => console.error("Error:", error));
-
+        .then((res) => res.json())
+        .then((response) => {
+          if (response?.isError) {
+            setFormData({
+              ...formData,
+              general: {
+                error: response?.response,
+              },
+            });
+          } else {
+            setLoginInfo({
+              ...loginInfo,
+              userInfo: {
+                ...loginInfo.userInfo,
+                activities: [...loginInfo.userInfo.activities, newActivity],
+              },
+            });
+            setFormData({
+              ...initialStateForm,
+              general: {
+                error: undefined,
+                success: "Actividad registrada con exito",
+              },
+            });
+            setLocation("/home");
+          }
+        })
+        .catch((error) => console.error("Error:", error));
     } else {
       setFormData({
         ...formData,
